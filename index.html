@@ -54,15 +54,19 @@
 
     ul { list-style: none; }
 
-    /* --- ANIMÁCIÓK (SCROLL REVEAL) --- */
-    /* Alapállapot: láthatatlan és lejjebb van */
+    /* --- GLOBÁLIS KÉP DEFINÍCIÓK (Hogy mobilon is látszódjanak) --- */
+    .cat-csomagok { background-image: url('input_file_2.png'); }
+    .cat-penztarcak { background-image: url('input_file_3.png'); }
+    .cat-kulcstartok { background-image: url('input_file_4.png'); }
+    .cat-alkatreszek { background-image: url('input_file_5.png'); }
+
+    /* --- ANIMÁCIÓK --- */
     .reveal {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(2rem);
         transition: all 0.8s ease-out;
     }
     
-    /* Aktív állapot: látható és helyén van (JS teszi rá) */
     .reveal.active {
         opacity: 1;
         transform: translateY(0);
@@ -211,7 +215,7 @@
         .feature-icon svg { width: 28px; height: 28px; }
         .feature-item span { font-weight: 700; text-transform: uppercase; font-size: 9px; }
 
-        /* Categories - VÍZSZINTES GÖRGETÉS + 9:16 */
+        /* Categories */
         details { margin: 24px 0; }
         summary {
             background: #000; color: #fff; padding: 10px; text-align: center;
@@ -221,19 +225,19 @@
             font-size: 10px;
         }
         .category-grid {
-            display: flex; /* Grid helyett Flex */
-            overflow-x: auto; /* Vízszintes görgetés */
-            scroll-snap-type: x mandatory; /* Finom görgetés */
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
             gap: 12px;
             margin-top: 12px;
-            padding-bottom: 10px; /* Hely a görgetősávnak (ha van) */
-            scrollbar-width: none; /* Firefox scrollbar rejtés */
+            padding-bottom: 10px;
+            scrollbar-width: none;
         }
-        .category-grid::-webkit-scrollbar { display: none; } /* Chrome scrollbar rejtés */
+        .category-grid::-webkit-scrollbar { display: none; }
 
         .category-card {
-            flex: 0 0 60vw; /* Fix szélesség, hogy kilógjon a következő */
-            aspect-ratio: 9/16; /* 9:16 arány */
+            flex: 0 0 60vw;
+            aspect-ratio: 9/16;
             position: relative;
             border-radius: 4.5px;
             overflow: hidden;
@@ -289,6 +293,7 @@
         .comparison-text { color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); font-size: 10px; }
 
         /* Reviews */
+        .section-title { text-align: center; font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
         .reviews-grid, .mission-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -301,7 +306,7 @@
             border: 1px solid #eee;
         }
 
-        /* Favorites - VÍZSZINTES GÖRGETÉS */
+        /* Favorites */
         .favorites-grid {
             display: flex;
             overflow-x: auto;
@@ -314,7 +319,7 @@
         .favorites-grid::-webkit-scrollbar { display: none; }
 
         .favorite-card {
-            flex: 0 0 70vw; /* Szélesebb kártyák */
+            flex: 0 0 70vw;
             background: #fff; padding: 12px; 
             border-radius: 4.5px; 
             border: 1px solid #eee;
@@ -326,19 +331,27 @@
             font-size: 9px;
         }
 
-        /* Mission */
+        /* Mission - KÉP IGAZÍTÁS JAVÍTVA */
         .mission-section {
             background-image: url('input_file_14.png'); background-size: cover;
+            /* Balrabb igazítva, hogy látszódjon a lényeg */
+            background-position: 25% center; 
             padding: 40px 16px; color: #fff; position: relative;
         }
         .mission-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
         .mission-container { position: relative; z-index: 2; }
 
-        /* Form - 20px GAP */
+        /* Form - CÍMSOR IGAZÍTÁS ÉS GAP */
         .form-section { 
-            padding: 20px 0; /* Padding a belső tartalomnak */
-            margin: 20px 0;  /* 20px gap alatta és felette */
+            padding: 20px 0; 
+            margin: 20px 0;  
         }
+        /* Kapcsolat címsor igazítása */
+        h2.section-title {
+            text-align: center;
+            padding-top: 10px;
+        }
+
         .form-grid { display: grid; gap: 10px; }
         .form-group input, .form-group textarea { 
             width: 100%; padding: 8px; border: 1px solid #ddd; 
@@ -351,9 +364,11 @@
             font-size: 10px; 
         }
 
-        /* Everyday & Footer */
+        /* Everyday - KÉP IGAZÍTÁS JAVÍTVA */
         .everyday-section {
             padding: 40px 16px; background-image: url('input_file_25.png'); background-size: cover;
+            /* Balrabb igazítva */
+            background-position: 25% center;
             color: #fff; position: relative;
         }
         .everyday-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -362,9 +377,8 @@
         
         footer { background: #000; color: #fff; padding: 24px 16px; text-align: center; }
         
-        /* Footer Tanúsítványok - 50% kisebb mobilon */
         .trust-badges, .payment-icons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
-        .trust-badges img { height: 2rem; /* Desktop 4rem fele */ }
+        .trust-badges img { height: 2rem; }
         .payment-icons img { height: 2rem; } 
     }
 
@@ -546,10 +560,6 @@
         }
         .category-card:hover .cat-bg { transform: scale(1.1); }
         .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
-        .cat-csomagok { background-image: url('input_file_2.png'); }
-        .cat-penztarcak { background-image: url('input_file_3.png'); }
-        .cat-kulcstartok { background-image: url('input_file_4.png'); }
-        .cat-alkatreszek { background-image: url('input_file_5.png'); }
         .category-card span { position: relative; z-index: 2; color: #fff; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; }
 
         /* Action Banner */
