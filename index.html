@@ -54,7 +54,7 @@
 
     ul { list-style: none; }
 
-    /* --- GLOBÁLIS KÉP DEFINÍCIÓK (Hogy mobilon is látszódjanak) --- */
+    /* --- GLOBÁLIS KÉP DEFINÍCIÓK --- */
     .cat-csomagok { background-image: url('input_file_2.png'); }
     .cat-penztarcak { background-image: url('input_file_3.png'); }
     .cat-kulcstartok { background-image: url('input_file_4.png'); }
@@ -191,8 +191,19 @@
             position: relative;
         }
         .hero-section::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
-        .hero-content { position: relative; z-index: 2; width: 100%; }
+        
+        /* HERO SZÖVEG KÖZÉPRE IGAZÍTÁSA MOBILON */
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            width: 100%; 
+            text-align: center; /* Középre */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Flex középre */
+        }
         .hero-content h1, .hero-content p { color: #fff; }
+        
         .hero-btn {
             background: #fff;
             color: #000;
@@ -331,22 +342,21 @@
             font-size: 9px;
         }
 
-        /* Mission - KÉP IGAZÍTÁS JAVÍTVA */
+        /* Mission - KÉP IGAZÍTÁS JAVÍTVA (12% balra) */
         .mission-section {
             background-image: url('input_file_14.png'); background-size: cover;
-            /* Balrabb igazítva, hogy látszódjon a lényeg */
-            background-position: 25% center; 
+            /* 25% volt, most 12% (50%-kal balrabb) */
+            background-position: 12% center; 
             padding: 40px 16px; color: #fff; position: relative;
         }
         .mission-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
         .mission-container { position: relative; z-index: 2; }
 
-        /* Form - CÍMSOR IGAZÍTÁS ÉS GAP */
+        /* Form */
         .form-section { 
             padding: 20px 0; 
             margin: 20px 0;  
         }
-        /* Kapcsolat címsor igazítása */
         h2.section-title {
             text-align: center;
             padding-top: 10px;
@@ -364,11 +374,11 @@
             font-size: 10px; 
         }
 
-        /* Everyday - KÉP IGAZÍTÁS JAVÍTVA */
+        /* Everyday - KÉP IGAZÍTÁS JAVÍTVA (20% balra) */
         .everyday-section {
             padding: 40px 16px; background-image: url('input_file_25.png'); background-size: cover;
-            /* Balrabb igazítva */
-            background-position: 25% center;
+            /* 25% volt, most 20% (20%-kal balrabb) */
+            background-position: 20% center;
             color: #fff; position: relative;
         }
         .everyday-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -379,7 +389,8 @@
         
         .trust-badges, .payment-icons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
         .trust-badges img { height: 2rem; }
-        .payment-icons img { height: 2rem; } 
+        /* FIZETÉSI IKONOK JAVÍTVA: 50%-kal kisebb (1rem) */
+        .payment-icons img { height: 1rem; } 
     }
 
     /* =========================================
