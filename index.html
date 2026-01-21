@@ -54,22 +54,25 @@
 
     ul { list-style: none; }
 
-    /* --- ANIMÁCIÓK --- */
+    /* --- ANIMÁCIÓK (SCROLL REVEAL) --- */
+    /* Alapállapot: láthatatlan és lejjebb van */
     .reveal {
         opacity: 0;
-        transform: translateY(2rem);
-        animation: fadeUp 1s ease forwards;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
     }
     
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-
-    @keyframes fadeUp {
-        to { opacity: 1; transform: translateY(0); }
+    /* Aktív állapot: látható és helyén van (JS teszi rá) */
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
     }
+    
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
 
-    /* --- SCROLL TO TOP BUTTON (MÓDOSÍTVA) --- */
+    /* --- SCROLL TO TOP BUTTON --- */
     #scrollTopBtn {
         display: none;
         position: fixed;
@@ -81,8 +84,7 @@
         background-color: var(--accent-red);
         color: white;
         cursor: pointer;
-        padding: 0; /* Padding reset a flexboxhoz */
-        /* Négyzet alak (enyhe lekerekítéssel) */
+        padding: 0;
         border-radius: 5px; 
         width: 45px;
         height: 45px;
@@ -97,7 +99,6 @@
         transform: translateY(-5px);
     }
     
-    /* Szolid nyíl ikon mérete */
     #scrollTopBtn svg {
         width: 20px;
         height: 20px;
@@ -210,7 +211,7 @@
         .feature-icon svg { width: 28px; height: 28px; }
         .feature-item span { font-weight: 700; text-transform: uppercase; font-size: 9px; }
 
-        /* Categories */
+        /* Categories - VÍZSZINTES GÖRGETÉS + 9:16 */
         details { margin: 24px 0; }
         summary {
             background: #000; color: #fff; padding: 10px; text-align: center;
@@ -220,19 +221,26 @@
             font-size: 10px;
         }
         .category-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex; /* Grid helyett Flex */
+            overflow-x: auto; /* Vízszintes görgetés */
+            scroll-snap-type: x mandatory; /* Finom görgetés */
             gap: 12px;
             margin-top: 12px;
+            padding-bottom: 10px; /* Hely a görgetősávnak (ha van) */
+            scrollbar-width: none; /* Firefox scrollbar rejtés */
         }
+        .category-grid::-webkit-scrollbar { display: none; } /* Chrome scrollbar rejtés */
+
         .category-card {
-            aspect-ratio: 16/9;
+            flex: 0 0 60vw; /* Fix szélesség, hogy kilógjon a következő */
+            aspect-ratio: 9/16; /* 9:16 arány */
             position: relative;
             border-radius: 4.5px;
             overflow: hidden;
             display: flex;
             align-items: flex-end;
             padding: 10px;
+            scroll-snap-align: start;
         }
         .cat-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
         .cat-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
@@ -280,17 +288,37 @@
         .comparison-section h2 { color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .comparison-text { color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); font-size: 10px; }
 
-        /* Reviews & Favorites Grid */
-        .reviews-grid, .favorites-grid, .mission-grid {
+        /* Reviews */
+        .reviews-grid, .mission-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 12px;
             margin-bottom: 40px;
         }
-        .review-card, .favorite-card {
+        .review-card {
             background: #fff; padding: 12px; 
             border-radius: 4.5px; 
             border: 1px solid #eee;
+        }
+
+        /* Favorites - VÍZSZINTES GÖRGETÉS */
+        .favorites-grid {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .favorites-grid::-webkit-scrollbar { display: none; }
+
+        .favorite-card {
+            flex: 0 0 70vw; /* Szélesebb kártyák */
+            background: #fff; padding: 12px; 
+            border-radius: 4.5px; 
+            border: 1px solid #eee;
+            scroll-snap-align: start;
         }
         .fav-img-placeholder {
             width: 100%; aspect-ratio: 1/1; background: #f0f0f0; 
@@ -306,7 +334,11 @@
         .mission-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
         .mission-container { position: relative; z-index: 2; }
 
-        /* Form */
+        /* Form - 20px GAP */
+        .form-section { 
+            padding: 20px 0; /* Padding a belső tartalomnak */
+            margin: 20px 0;  /* 20px gap alatta és felette */
+        }
         .form-grid { display: grid; gap: 10px; }
         .form-group input, .form-group textarea { 
             width: 100%; padding: 8px; border: 1px solid #ddd; 
@@ -329,8 +361,10 @@
         .everyday-features { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 12px; }
         
         footer { background: #000; color: #fff; padding: 24px 16px; text-align: center; }
+        
+        /* Footer Tanúsítványok - 50% kisebb mobilon */
         .trust-badges, .payment-icons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
-        /* FIZETÉSI IKONOK KISEBBEK MOBILON IS */
+        .trust-badges img { height: 2rem; /* Desktop 4rem fele */ }
         .payment-icons img { height: 2rem; } 
     }
 
@@ -651,12 +685,12 @@
         }
         .submit-btn:hover { background: var(--hover-sand); color: #000; }
 
-        /* Everyday - JAVÍTVA: Kizoomolva (100% szélesség) */
+        /* Everyday */
         .everyday-section {
             padding: 6rem 0; 
             background-image: url('input_file_25.png'); 
-            background-color: #000; /* Biztosíték, ha a kép nem tölti ki */
-            background-size: 100%; /* Kizoomolva: teljes szélesség */
+            background-color: #000; 
+            background-size: 100%; 
             background-repeat: no-repeat;
             background-position: center;
             position: relative; color: #fff; display: flex; align-items: center;
@@ -684,7 +718,6 @@
         .trust-badges img { height: 4rem; margin: 0 1.5rem; }
         
         .payment-icons { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 3rem 0; }
-        /* FIZETÉSI IKONOK JAVÍTVA: 35%-kal kisebb (2rem) */
         .payment-icons img { height: 2rem; }
         .copyright { font-size: 1.2rem; color: #888; }
     }
@@ -1083,6 +1116,20 @@
         // Végösszeg frissítése
         cartTotalAmount.textContent = total.toLocaleString('hu-HU') + ' Ft';
     }
+
+    // --- SCROLL REVEAL ANIMÁCIÓ (MOBILRA IS) ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Csak egyszer animáljon
+            }
+        });
+    }, { threshold: 0.1 }); // Akkor aktiválódik, ha 10%-a látszik
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
 </script>
 </body>
 </html>
