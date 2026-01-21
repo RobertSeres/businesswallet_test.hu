@@ -245,6 +245,7 @@
             position: relative; 
             z-index: 2; 
             width: 100%; 
+            /* JAVÍTVA: Középre igazítás */
             text-align: center; 
             display: flex;
             flex-direction: column;
@@ -257,19 +258,35 @@
             font-weight: 800;
             text-transform: uppercase;
             display: inline-block;
-            border-radius: 3.5px;
+            /* JAVÍTVA: Szép lekerekítés (8px) */
+            border-radius: 8px;
             font-size: 10px;
         }
 
-        /* Features */
+        /* Features - JAVÍTVA: Egymás mellett, nagyobb ikonok */
         .features-strip { padding: 24px 0; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
         .features-inner {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row; /* Sorba rendezés */
+            justify-content: space-around;
+            gap: 10px;
         }
-        .feature-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .feature-icon img { width: 28px; height: auto; transition: transform 0.3s; }
+        .feature-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 6px; 
+            flex: 1; /* Egyenlő szélesség */
+            text-align: center;
+        }
+        
+        /* Ikonok cseréje képekre (Mobil) + 30% nagyobb */
+        .feature-icon img { 
+            width: 38px; /* 28px * 1.3 ≈ 38px */
+            height: auto; 
+            transition: transform 0.3s; 
+        }
+        
         .feature-item span { font-weight: 700; text-transform: uppercase; font-size: 9px; }
 
         /* Categories */
@@ -277,7 +294,7 @@
         summary {
             background: #000; color: #fff; padding: 10px; text-align: center;
             font-weight: 700; text-transform: uppercase; 
-            border-radius: 3.5px; 
+            border-radius: 8px; /* Szép lekerekítés */
             list-style: none;
             font-size: 10px;
         }
@@ -333,7 +350,7 @@
         .action-btn {
             padding: 8px 16px; 
             font-weight: 800; text-transform: uppercase; display: inline-block; margin-top: 12px;
-            border-radius: 3.5px; 
+            border-radius: 8px; /* Szép lekerekítés */
             font-size: 10px;
         }
 
@@ -345,7 +362,7 @@
         
         img[src="input_file_23.png"] { height: 8px !important; }
 
-        /* Comparison - JAVÍTVA: Szöveg lejjebb, árnyék nélkül */
+        /* Comparison */
         .comparison-section {
             background: #fff; padding: 24px 16px; text-align: center; 
             margin: 40px 0 24px 0;
@@ -357,17 +374,13 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            /* JAVÍTVA: Aljára igazítás */
             justify-content: flex-end; 
-            /* JAVÍTVA: Alsó padding, hogy ne érjen a széléhez */
             padding-bottom: 30px;
         }
         .comparison-section h2 { 
             color: var(--btn-color) !important;
-            /* JAVÍTVA: Nincs árnyék */
             text-shadow: none !important;
         }
-        /* JAVÍTVA: Nincs árnyék */
         .comparison-text { color: #fff; text-shadow: none !important; font-size: 10px; }
 
         /* Reviews */
@@ -409,10 +422,10 @@
             font-size: 9px;
         }
 
-        /* Mission */
+        /* Mission - JAVÍTVA: Kép igazítás (85% - ember látszik) */
         .mission-section {
             background-image: url('input_file_14.png'); background-size: cover;
-            background-position: 12% center; 
+            background-position: 85% center; 
             padding: 40px 16px; color: #fff; position: relative;
         }
         .mission-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -436,14 +449,14 @@
         }
         .submit-btn { 
             width: 100%; padding: 10px; font-weight: 700; text-transform: uppercase; 
-            border-radius: 3.5px; 
+            border-radius: 8px; /* Szép lekerekítés */
             font-size: 10px; 
         }
 
-        /* Everyday */
+        /* Everyday - JAVÍTVA: Kép igazítás (45% - kártya látszik) */
         .everyday-section {
             padding: 40px 16px; background-image: url('input_file_25.png'); background-size: cover;
-            background-position: 20% center;
+            background-position: 45% center;
             color: #fff; position: relative;
         }
         .everyday-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -695,31 +708,25 @@
         
         img[src="input_file_23.png"] { height: 2rem !important; }
 
-        /* Comparison - JAVÍTVA: Szöveg lejjebb, árnyék nélkül */
+        /* Comparison */
         .comparison-section {
             background-image: url('input_file_13.png');
             background-size: cover; 
             background-repeat: no-repeat; 
             background-position: top center; 
             min-height: calc(40vw - 200px);
-            display: flex; flex-direction: column; align-items: center; 
-            /* JAVÍTVA: Aljára igazítás */
-            justify-content: flex-end; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center;
             margin-top: 40px;
             margin-bottom: 8rem;
             border-radius: 0.9rem;
             box-shadow: 0 1rem 3rem rgba(0,0,0,0.05);
-            /* JAVÍTVA: Alsó padding */
-            padding-bottom: 4rem;
         }
         .comparison-section h2 { 
             color: var(--btn-color) !important;
-            /* JAVÍTVA: Nincs árnyék */
-            text-shadow: none !important;
+            text-shadow: 0 1px 10px rgba(255,255,255,0.8);
         }
-        /* JAVÍTVA: Nincs árnyék */
-        .comparison-text { font-size: 1.8rem; font-weight: 500; text-shadow: none !important; color: #fff; }
+        .comparison-text { font-size: 1.8rem; font-weight: 500; }
 
         /* Reviews */
         .section-title { text-align: center; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 4rem; }
