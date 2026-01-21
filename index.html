@@ -187,22 +187,24 @@
             padding: 40px 16px;
             display: flex;
             align-items: center;
+            justify-content: center; /* Függőlegesen is középre */
             text-align: center;
             position: relative;
         }
         .hero-section::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
         
-        /* HERO SZÖVEG KÖZÉPRE IGAZÍTÁSA MOBILON */
+        /* HERO SZÖVEG KÖZÉPRE IGAZÍTÁSA (JAVÍTVA) */
         .hero-content { 
             position: relative; 
             z-index: 2; 
             width: 100%; 
-            text-align: center; /* Középre */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Flex középre */
+            align-items: center; /* Vízszintesen középre */
+            justify-content: center;
+            text-align: center; /* Szöveg igazítása */
         }
-        .hero-content h1, .hero-content p { color: #fff; }
+        .hero-content h1, .hero-content p { color: #fff; text-align: center; }
         
         .hero-btn {
             background: #fff;
@@ -213,6 +215,7 @@
             display: inline-block;
             border-radius: 3.5px;
             font-size: 10px;
+            margin-top: 10px; /* Kis térköz a szöveg és gomb közé */
         }
 
         /* Features */
@@ -342,11 +345,11 @@
             font-size: 9px;
         }
 
-        /* Mission - KÉP IGAZÍTÁS JAVÍTVA (12% balra) */
+        /* Mission - KÉP IGAZÍTÁS JAVÍTVA (80% vagy right center) */
         .mission-section {
             background-image: url('input_file_14.png'); background-size: cover;
-            /* 25% volt, most 12% (50%-kal balrabb) */
-            background-position: 12% center; 
+            /* Jobbra igazítva, hogy az ember látszódjon */
+            background-position: 80% center; 
             padding: 40px 16px; color: #fff; position: relative;
         }
         .mission-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -374,11 +377,11 @@
             font-size: 10px; 
         }
 
-        /* Everyday - KÉP IGAZÍTÁS JAVÍTVA (20% balra) */
+        /* Everyday - KÉP IGAZÍTÁS JAVÍTVA (Hogy látszódjon a kártya) */
         .everyday-section {
             padding: 40px 16px; background-image: url('input_file_25.png'); background-size: cover;
-            /* 25% volt, most 20% (20%-kal balrabb) */
-            background-position: 20% center;
+            /* Kicsit balra/középre igazítva, kísérleti érték a kártyához */
+            background-position: 35% center;
             color: #fff; position: relative;
         }
         .everyday-section::before { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.7); }
@@ -571,6 +574,10 @@
         }
         .category-card:hover .cat-bg { transform: scale(1.1); }
         .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+        .cat-csomagok { background-image: url('input_file_2.png'); }
+        .cat-penztarcak { background-image: url('input_file_3.png'); }
+        .cat-kulcstartok { background-image: url('input_file_4.png'); }
+        .cat-alkatreszek { background-image: url('input_file_5.png'); }
         .category-card span { position: relative; z-index: 2; color: #fff; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; }
 
         /* Action Banner */
