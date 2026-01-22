@@ -365,12 +365,25 @@
             overflow: hidden;
             display: flex;
             align-items: flex-end;
+            /* JAVÍTVA: Vízszintes középre igazítás */
+            justify-content: center;
             padding: 10px 10px 40px 10px;
             scroll-snap-align: start;
         }
         .cat-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.8s; }
         .cat-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
-        .category-card span { position: relative; z-index: 2; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 12px; }
+        
+        .category-card span { 
+            position: relative; 
+            z-index: 2; 
+            color: #fff; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            /* JAVÍTVA: Nagyobb betűméret (+20%) és középre igazítás */
+            font-size: 14.5px; 
+            text-align: center;
+            width: 100%;
+        }
 
         /* Action Banner */
         .action-banner {
