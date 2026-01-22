@@ -832,13 +832,13 @@
         
         img[src="input_file_23.png"] { height: 2rem !important; }
 
-        /* Comparison - JAVÍTVA: Magasság csökkentve */
+        /* Comparison - JAVÍTVA: Fix magasság és szöveg pozicionálás */
         .comparison-section {
             background-image: url('input_file_13.png');
             background-size: cover; 
             background-repeat: no-repeat; 
-            background-position: top center; 
-            min-height: 40vw; /* Visszaállítva 40vw-re */
+            background-position: center center; /* Kezek középre */
+            min-height: 500px; /* JAVÍTVA: Kompaktabb fix magasság (korábban 40vw) */
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
             text-align: center;
             margin-top: 40px;
@@ -847,6 +847,13 @@
             box-shadow: 0 1rem 3rem rgba(0,0,0,0.05);
             padding-bottom: 4rem;
         }
+        
+        /* JAVÍTVA: Szöveg konténer korlátozása, hogy ne lógjon a kezekbe */
+        .comparison-section > div {
+            max-width: 600px; /* A szöveg nem lesz szélesebb, így nem takarja ki a kezeket */
+            margin: 0 auto;
+        }
+
         .comparison-section h2 { 
             color: var(--btn-color) !important;
             text-shadow: none !important;
